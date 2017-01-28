@@ -4,9 +4,8 @@ gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
-# TODO: use sass-rails, fix deprecation warnings
-gem 'less-rails-bootstrap'
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks', '~> 5'
 gem 'jquery-rails'
