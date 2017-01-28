@@ -6,5 +6,6 @@ require 'wrong'
 
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
+  include AuthHelper
   include Wrong
 end

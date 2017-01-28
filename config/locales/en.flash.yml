@@ -1,0 +1,9 @@
+en:
+  flash:
+    web:
+      sessions:
+        create:
+          error: 'Please review the problems below:'
+          success: Welcome!
+        destroy:
+          success: You signed out now

@@ -14,7 +14,10 @@ gem 'haml-rails'
 
 gem 'config'
 gem 'aasm'
+gem 'active_type'
+gem 'bcrypt'
 gem 'authority'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platform: :mri

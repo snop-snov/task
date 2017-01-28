@@ -25,6 +25,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_type (0.6.1)
+      activerecord (>= 3.2)
     activejob (5.0.1)
       activesupport (= 5.0.1)
       globalid (>= 0.3.6)
@@ -44,6 +46,7 @@ GEM
       activesupport (>= 3.0.0)
     autoprefixer-rails (6.7.0)
       execjs
+    bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -149,6 +152,9 @@ GEM
       sexp_processor (~> 4.1)
     sass (3.4.23)
     sexp_processor (4.7.0)
+    simple_form (3.4.0)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -192,8 +198,10 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  active_type
   authority
   autoprefixer-rails
+  bcrypt
   bootstrap-sass (~> 3.3.6)
   byebug
   config
@@ -204,6 +212,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   therubyracer

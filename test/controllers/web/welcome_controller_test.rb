@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class Web::SchedulesControllerTest < ActionController::TestCase
+class Web::WelcomeControllerTest < ActionController::TestCase
   setup do
     user = create :user
     sign_in user
   end
 
-  test 'new' do
-    get :new
+  test 'index' do
+    get :index
     assert_response :success
   end
 end

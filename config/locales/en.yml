@@ -1,5 +1,11 @@
 en:
   web:
-   schedules:
-     new:
-       title: Schedule
+    sessions:
+      new:
+        title: Sign in
+    welcome:
+      new:
+        title: Welcome
+    schedules:
+      new:
+        title: Schedule

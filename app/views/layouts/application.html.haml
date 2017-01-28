@@ -10,11 +10,9 @@
       .container-fluid
         .collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
-            -if true #signed_in?
+            -if signed_in?
               %li
-                =link_to t('.sign_out'), new_schedule_path, method: :delete, class: 'btn'
-    .container-fluid
-      .row-fluid
-        .span9
-          = bootstrap_flash
-          = yield
+                =link_to t('.sign_out'), session_path, method: :delete, class: 'btn'
+    .container
+      = bootstrap_flash
+      = yield
