@@ -14,6 +14,7 @@ gem 'haml-rails'
 
 gem 'config'
 gem 'aasm'
+gem 'authority'
 
 group :development, :test do
   gem 'byebug', platform: :mri
