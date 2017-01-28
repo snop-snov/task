@@ -22,4 +22,8 @@ FactoryGirl.define do
   sequence :date do
     DateTime.now.to_date
   end
+
+  sequence :file do
+    Rack::Test::UploadedFile.new(Settings.schedule.file_path, 'text/csv')
+  end
 end

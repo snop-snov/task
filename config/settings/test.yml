@@ -1,0 +1,2 @@
+schedule:
+  file_path: test/factories/files/orders.csv

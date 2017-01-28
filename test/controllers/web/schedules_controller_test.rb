@@ -10,4 +10,12 @@ class Web::SchedulesControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test 'create' do
+    file = generate :file
+    ScheduleService.expects(:import).once
+
+    post :create, params: { schedule: { file: file } }
+    assert_response :redirect
+  end
 end

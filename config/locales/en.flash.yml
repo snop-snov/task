@@ -7,3 +7,7 @@ en:
           success: Welcome!
         destroy:
           success: You signed out now
+      schedules:
+        create:
+          error: 'Schedule upload error: check file name'
+          success: Schedule uploaded successfully

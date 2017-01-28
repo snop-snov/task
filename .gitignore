@@ -1,8 +1,10 @@
 /.bundle
 /log/*
 /tmp/*
+/public/uploads/*
 !/log/.keep
 !/tmp/.keep
+!/public/uploads/.keep
 
 .byebug_history
 

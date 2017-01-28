@@ -8,6 +8,10 @@ class Order < ApplicationRecord
     state :performed
     state :overdue
 
+    event :invalidate do
+      transitions to: :need_checking
+    end
+
     event :check do
       transitions from: :need_checking, to: :unassigned
     end

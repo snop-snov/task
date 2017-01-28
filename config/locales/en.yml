@@ -4,8 +4,9 @@ en:
       new:
         title: Sign in
     welcome:
-      new:
+      index:
         title: Welcome
     schedules:
       new:
         title: Schedule
+        schedule_file: Schedule file

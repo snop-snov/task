@@ -13,7 +13,7 @@ class UserSignInType < ActiveType::Object
   private
 
   def check_authenticate
-    if !user.try(:authenticate, password)
+    unless user.try(:authenticate, password)
       errors.add(:password, :user_or_password_invalid)
     end
   end
