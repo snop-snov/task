@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Task
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            -if true #signed_in?
+              %li
+                =link_to t('.sign_out'), new_schedule_path, method: :delete, class: 'btn'
+    .container-fluid
+      .row-fluid
+        .span9
+          = bootstrap_flash
+          = yield
