@@ -5,6 +5,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'turbolinks', '~> 5'
 gem 'config'
+gem 'aasm'
 
 group :development, :test do
   gem 'byebug', platform: :mri
