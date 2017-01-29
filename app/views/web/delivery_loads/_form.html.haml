@@ -1,0 +1,14 @@
+= simple_form_for @delivery_load do |f|
+  .row
+    = f.error_notification
+    .col-md-4
+      = f.input :delivery_shift, as: :select, collection: ['M', 'A', 'E']
+      .form-group
+        = f.label t('.date')
+        .form-control
+          = f.date_select :date, order: [:month, :day, :year]
+      = f.input :driver_id, as: :select, collection: User.drivers
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('helpers.links.cancel'), delivery_loads_path, class: 'btn'

@@ -12,7 +12,10 @@
       = f.input :volume
       = f.input :handling_unit_quantity
     .col-md-4
-      = f.input :delivery_date
+      .form-group
+        = f.label t('.delivery_date')
+        .form-control
+          = f.date_select :delivery_date, order: [:month, :day, :year]
       = f.input :delivery_shift, as: :select, collection: ['M', 'A', 'E']
       = f.input :state, as: :select, collection: @order_states, selected: @order.state
 

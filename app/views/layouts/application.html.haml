@@ -13,6 +13,7 @@
             %ul.nav.navbar-nav.navbar-left
               %li= link_to t('.schedule_import'), new_schedule_path, class: 'btn' if current_user.can_read? ScheduleType
               %li= link_to t('.orders'), orders_path, class: 'btn' if current_user.can_read? Order
+              %li= link_to t('.delivery_loads'), delivery_loads_path, class: 'btn' if current_user.can_read? DeliveryLoad
             %ul.nav.navbar-nav.navbar-right
               %li= link_to t('.sign_out'), session_path, method: :delete, class: 'btn'
     .container

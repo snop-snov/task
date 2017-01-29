@@ -15,3 +15,10 @@ en:
         update:
           error: Order update error
           success: Order updated successfully
+      delivery_loads:
+        update:
+          error: Delivery load update error
+          success: Delivery load updated successfully
+        create:
+          error: Delivery load create error
+          success: Delivery load created successfully

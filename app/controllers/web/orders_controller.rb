@@ -3,12 +3,14 @@ class Web::OrdersController < Web::ApplicationController
 
   def index
     @q = Order.ransack(params[:q])
-    @orders = @q.result.page(params[:page])
+    @orders = @q.result.order(:delivery_date).page(params[:page])
   end
 
   def edit
-    @order = Order.find(params[:id])
-    @order_states = @order.aasm.states(permitted: true).map(&:name) << @order.state
+    @order = Order.find params[:id]
+
+    @order_states = @order.aasm.states(permitted: true).map(&:name)
+    @order_states << @order.state unless @order_states.include? @order.state.to_sym
   end
 
   def update
@@ -21,10 +23,6 @@ class Web::OrdersController < Web::ApplicationController
       render action: 'edit'
     end
   end
-
-  # def destroy
-  #   #soft_delete?
-  # end
 
   private
 

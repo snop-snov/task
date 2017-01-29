@@ -23,3 +23,14 @@ en:
         title: Orders
       edit:
         title: Edit order
+      form:
+        delivery_date: Delivery date
+    delivery_loads:
+      index:
+        title: Delivery loads
+      new:
+        title: New delivery load
+      edit:
+        title: Edit delivery load
+      form:
+        date: Date
