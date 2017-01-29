@@ -1,0 +1,7 @@
+= simple_form_for @session, url: session_path do |f|
+  .row
+    .col-md-3
+      = f.input :email
+      = f.input :password
+  .form-actions
+    = f.button :submit, t('helpers.submit'), class: 'btn btn-primary'

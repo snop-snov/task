@@ -1,4 +1,11 @@
 en:
+  date:
+    formats:
+      default: '%_m/%e/%Y'
+  time:
+    formats:
+      date_only: "%_m/%e/%Y"
+
   web:
     sessions:
       new:
@@ -9,4 +16,10 @@ en:
     schedules:
       new:
         title: Schedule
+      form:
         schedule_file: Schedule file
+    orders:
+      index:
+        title: Orders
+      edit:
+        title: Edit order

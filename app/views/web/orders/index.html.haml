@@ -1,0 +1,44 @@
+.page-header
+  %h1=t '.title'
+
+= paginate @orders
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= sort_link(@q, :id)
+      %th= sort_link(@q, :delivery_date)
+      %th= sort_link(@q, :delivery_shift)
+      %th= sort_link(@q, :client_name)
+      %th= sort_link(@q, :destination_raw_line_1)
+      %th= sort_link(@q, :destination_city)
+      %th= sort_link(@q, :destination_zip)
+      %th= sort_link(@q, :phone_number)
+      %th= sort_link(@q, :purchase_order_number)
+      %th= sort_link(@q, :volume)
+      %th= sort_link(@q, :handling_unit_quantity)
+      %th= sort_link(@q, :state)
+      %th=t 'helpers.actions'
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.id
+        %td=l order.delivery_date, format: :date_only if order.delivery_date.present?
+        %td= order.delivery_shift
+        %td= order.client_name
+        %td= order.destination_raw_line_1
+        %td= order.destination_city
+        %td= order.destination_zip
+        %td= order.phone_number
+        %td= order.purchase_order_number
+        %td= order.volume
+        %td= order.handling_unit_quantity
+        %td= order.state
+        %td
+          = link_to edit_order_path(order.id) do
+            %i.glyphicon.glyphicon-pencil
+          - if order.need_checking?
+            = link_to order_path(order, order: { state: :unassigned }), method: :put do
+              %i.glyphicon.glyphicon-ok
+
+= paginate @orders

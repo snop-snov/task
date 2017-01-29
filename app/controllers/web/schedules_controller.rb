@@ -1,4 +1,6 @@
 class Web::SchedulesController < Web::ApplicationController
+  authorize_actions_for ScheduleType
+
   def new
   end
 

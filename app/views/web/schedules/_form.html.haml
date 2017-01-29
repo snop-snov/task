@@ -1,0 +1,9 @@
+= simple_form_for :schedule, url: schedule_path do |f|
+  .row
+    .col-md-3
+      .form-group
+        = f.label t('.schedule_file')
+        = f.file_field :file, class: "form-control"
+
+  .form-actions
+    = f.button :submit, t('helpers.submit'), class: 'btn btn-primary'

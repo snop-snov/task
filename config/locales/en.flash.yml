@@ -9,5 +9,9 @@ en:
           success: You signed out now
       schedules:
         create:
-          error: 'Schedule upload error: check file name'
+          error: 'Schedule upload error: check file'
           success: Schedule uploaded successfully
+      orders:
+        update:
+          error: Order update error
+          success: Order updated successfully

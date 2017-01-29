@@ -18,6 +18,8 @@ gem 'active_type'
 gem 'bcrypt'
 gem 'authority'
 gem 'simple_form'
+gem 'ransack'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platform: :mri

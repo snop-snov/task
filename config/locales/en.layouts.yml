@@ -2,3 +2,4 @@ en:
   layouts:
     application:
       sign_out: Sign out
+      schedule_import: Schedule import

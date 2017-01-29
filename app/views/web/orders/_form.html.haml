@@ -1,0 +1,21 @@
+= simple_form_for @order do |f|
+  .row
+    = f.error_notification
+    .col-md-4
+      = f.input :client_name
+      = f.input :destination_raw_line_1
+      = f.input :destination_city
+      = f.input :destination_zip
+    .col-md-4
+      = f.input :phone_number
+      = f.input :purchase_order_number
+      = f.input :volume
+      = f.input :handling_unit_quantity
+    .col-md-4
+      = f.input :delivery_date
+      = f.input :delivery_shift, as: :select, collection: ['M', 'A', 'E']
+      = f.input :state, as: :select, collection: @order_states, selected: @order.state
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('helpers.links.cancel'), orders_path, class: 'btn'

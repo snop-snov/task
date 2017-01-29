@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Web::SchedulesControllerTest < ActionController::TestCase
   setup do
-    user = create :user
+    user = create :user, :dispatcher
     sign_in user
   end
 

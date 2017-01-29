@@ -9,10 +9,12 @@
     %nav.navbar.navbar-default
       .container-fluid
         .collapse.navbar-collapse
-          %ul.nav.navbar-nav.navbar-right
-            -if signed_in?
-              %li
-                =link_to t('.sign_out'), session_path, method: :delete, class: 'btn'
+          -if signed_in?
+            %ul.nav.navbar-nav.navbar-left
+              %li= link_to t('.schedule_import'), new_schedule_path, class: 'btn' if current_user.can_read? ScheduleType
+              %li= link_to t('.orders'), orders_path, class: 'btn' if current_user.can_read? Order
+            %ul.nav.navbar-nav.navbar-right
+              %li= link_to t('.sign_out'), session_path, method: :delete, class: 'btn'
     .container
       = bootstrap_flash
       = yield

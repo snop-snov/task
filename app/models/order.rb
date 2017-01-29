@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  include Authority::Abilities
   include AASM
 
   aasm column: :state do

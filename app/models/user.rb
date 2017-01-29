@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Authority::UserAbilities
+
   has_secure_password
 
   validates :email, presence: true, uniqueness: true, length: { maximum: 255 }

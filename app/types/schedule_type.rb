@@ -1,4 +1,6 @@
 class ScheduleType < ActiveType::Object
+  include Authority::Abilities
+
   CONTENT_TYPE = 'text/csv'.freeze
 
   attribute :file, :file
