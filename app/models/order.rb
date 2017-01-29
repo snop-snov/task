@@ -2,6 +2,8 @@ class Order < ApplicationRecord
   include Authority::Abilities
   include AASM
 
+  belongs_to :delivery_load
+
   aasm column: :state do
     state :need_checking
     state :unassigned, initial: true
