@@ -3,7 +3,8 @@ class Web::OrdersController < Web::ApplicationController
 
   def index
     @q = Order.ransack(params[:q])
-    @orders = @q.result.order(:delivery_date).page(params[:page])
+    @q.sorts = ['delivery_date', 'id'] if @q.sorts.empty?
+    @orders = @q.result.page(params[:page])
   end
 
   def edit

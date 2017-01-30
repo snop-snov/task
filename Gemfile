@@ -20,6 +20,7 @@ gem 'authority'
 gem 'simple_form'
 gem 'ransack'
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 group :development, :test do
   gem 'byebug', platform: :mri

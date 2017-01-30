@@ -17,5 +17,10 @@
             %ul.nav.navbar-nav.navbar-right
               %li= link_to t('.sign_out'), session_path, method: :delete, class: 'btn'
     .container
+      - if need_checking?
+        .alert.alert-danger{role: 'alert'}
+          = t '.need_checking_alert'
+          = link_to t('.need_checking_href'), orders_path(q: { state_eq: :need_checking }), class: 'alert-link'
+
       = bootstrap_flash
       = yield

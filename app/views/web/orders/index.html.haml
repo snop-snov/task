@@ -1,7 +1,14 @@
 .page-header
   %h1=t '.title'
 
-= paginate @orders
+.well
+  %h5=t '.order_state_filter'
+  .btn-group
+    - Order.aasm.states.map(&:name).each do |state|
+      = link_to t(state), orders_path(q: { state_eq: state }), class: 'button btn btn-default'
+    = link_to t('.all'), orders_path, class: 'button btn btn-default'
+
+= paginate @orders, theme: 'twitter-bootstrap-3'
 
 %table.table.table-striped
   %thead
@@ -40,5 +47,8 @@
           - if order.need_checking?
             = link_to order_path(order, order: { state: :unassigned }), method: :put do
               %i.glyphicon.glyphicon-ok
+          - else
+            = link_to order_path(order, order: { state: :need_checking }), method: :put do
+              %i.glyphicon.glyphicon-remove
 
-= paginate @orders
+= paginate @orders, theme: 'twitter-bootstrap-3'
