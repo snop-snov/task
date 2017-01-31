@@ -3,5 +3,6 @@ en:
     application:
       sign_out: Sign out
       schedule_import: Schedule import
+      delivery_loads: Delivery loads
       need_checking_alert: "You have some suspicious orders. This orders could not be assigned for delivery! Please review it here:"
       need_checking_href: need checking orders

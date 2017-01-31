@@ -37,7 +37,7 @@ module ScheduleService
     end
 
     def validate_date(order)
-      if order.delivery_date.blank? || order.delivery_date < Time.zone.today
+      if order.delivery_date.blank? || order.delivery_date < Date.today
         order.invalidate
       end
     end

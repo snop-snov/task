@@ -1,6 +1,11 @@
 class Web::SchedulesController < Web::ApplicationController
   authorize_actions_for ScheduleType
 
+  def show
+    @q = current_user.delivery_loads.for_today.ransack(params[:q])
+    @delivery_loads = @q.result.page(params[:page])
+  end
+
   def new
   end
 

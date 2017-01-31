@@ -14,6 +14,10 @@ en:
       index:
         title: Welcome
     schedules:
+      show:
+        title: Download your Routing List for today
+        orders_count: Orders count
+        empty_load: Oops! You have not Routing List for today yet. Please, check this page later.
       new:
         title: Schedule
       form:

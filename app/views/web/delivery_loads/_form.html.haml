@@ -2,12 +2,11 @@
   .row
     = f.error_notification
     .col-md-4
-      = f.input :delivery_shift, as: :select, collection: ['M', 'A', 'E']
+      = f.input :delivery_shift, as: :select, collection: ['M', 'A', 'E'], include_blank: false
       .form-group
-        = f.label t('.date')
+        = f.label t('.date'), required: true
         .form-control
           = f.date_select :date, order: [:month, :day, :year]
-      = f.input :driver_id, as: :select, collection: User.drivers
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'

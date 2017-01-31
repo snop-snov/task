@@ -4,11 +4,10 @@ class DeliveryLoad < ApplicationRecord
   belongs_to :driver, -> { drivers }, class_name: User
   has_many :orders
 
-  validate :check_role, if: :driver_id
+  scope :for_today, -> { where date: Date.today }
 
-  private
+  validates :date, presence: true
+  validates :delivery_shift, presence: true
 
-  def check_role
-    User.drivers.find_by(id: driver_id).present?
-  end
+  # TODO: set driver before save
 end

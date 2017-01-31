@@ -1,5 +1,5 @@
 class DeliveryLoadAuthorizer < ApplicationAuthorizer
   def self.default(adjective, user)
-    user.role == 'dispatcher'
+    user.dispatcher?
   end
 end
