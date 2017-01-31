@@ -20,4 +20,4 @@ ADD . /app
 
 EXPOSE 3000
 
-CMD bundle exec rake db:create db:migrate db:seed && bundle exec rails s -b '0.0.0.0'
+CMD rake db:create db:migrate db:seed && rails s -b '0.0.0.0'
