@@ -18,7 +18,7 @@
       %tr
         %td= delivery_load.id
         %td=l delivery_load.date, format: :date_only
-        %td= delivery_load.delivery_shift
+        %td=t delivery_load.delivery_shift
         %td= delivery_load.orders.count
         %td
           = link_to edit_delivery_load_path(delivery_load.id) do

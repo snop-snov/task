@@ -16,7 +16,7 @@
         = f.label t('.delivery_date')
         .form-control
           = f.date_select :delivery_date, order: [:month, :day, :year]
-      = f.input :delivery_shift, as: :select, collection: ['M', 'A', 'E']
+      = f.input :delivery_shift, as: :select, collection: Settings.delivery_shifts
       = f.input :state, as: :select, collection: @order_states, selected: @order.state
 
   .form-actions

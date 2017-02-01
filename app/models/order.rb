@@ -4,6 +4,11 @@ class Order < ApplicationRecord
 
   belongs_to :delivery_load
 
+  scope :for_delivery_load, ->(delivery_load) {
+    where(delivery_date: delivery_load.date, state: :unassigned).
+    or(where(delivery_load_id: delivery_load.id))
+  }
+
   aasm column: :state do
     state :need_checking
     state :unassigned, initial: true

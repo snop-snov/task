@@ -3,6 +3,7 @@ class Web::DeliveryLoadsController < Web::ApplicationController
 
   def index
     @q = DeliveryLoad.ransack(params[:q])
+    @q.sorts = ['date desc', 'id'] if @q.sorts.empty?
     @delivery_loads = @q.result.page(params[:page])
   end
 
@@ -19,7 +20,7 @@ class Web::DeliveryLoadsController < Web::ApplicationController
 
     if @delivery_load.save
       f(:success)
-      redirect_to delivery_loads_path
+      redirect_to edit_delivery_load_path(@delivery_load)
     else
       render action: 'new'
     end
@@ -30,7 +31,7 @@ class Web::DeliveryLoadsController < Web::ApplicationController
 
     if @delivery_load.update(delivery_load_params)
       f(:success)
-      redirect_to delivery_loads_path
+      redirect_to edit_delivery_load_path(@delivery_load)
     else
       render action: 'edit'
     end
@@ -39,6 +40,6 @@ class Web::DeliveryLoadsController < Web::ApplicationController
   private
 
   def delivery_load_params
-    params.require(:delivery_load).permit(:date, :delivery_shift, :driver_id)
+    params.require(:delivery_load).permit(:date, :delivery_shift, order_ids: [])
   end
 end

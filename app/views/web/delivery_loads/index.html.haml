@@ -1,4 +1,5 @@
 .page-header
+  = link_to t('.new_delivery_load'), new_delivery_load_path, class: 'button btn btn-success btn-lg pull-right'
   %h1=t '.title'
 
 = paginate @delivery_loads
@@ -10,14 +11,16 @@
       %th= sort_link(@q, :date)
       %th= sort_link(@q, :delivery_shift)
       %th= sort_link(@q, :driver_id)
+      %th=t '.orders_count'
       %th=t 'helpers.actions'
   %tbody
     - @delivery_loads.each do |delivery_load|
       %tr
         %td= delivery_load.id
         %td=l delivery_load.date, format: :date_only
-        %td= delivery_load.delivery_shift
+        %td=t delivery_load.delivery_shift
         %td= delivery_load.driver.name if delivery_load.driver.present?
+        %td= delivery_load.orders.count
         %td
           = link_to edit_delivery_load_path(delivery_load.id) do
             %i.glyphicon.glyphicon-pencil

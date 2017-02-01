@@ -5,8 +5,8 @@ class Web::DeliveryLoadsControllerTest < ActionController::TestCase
     user = create :user, :dispatcher
     sign_in user
 
-    @delivery_load = create :delivery_load
-    @attrs = attributes_for :delivery_load
+    @delivery_load = create :delivery_load, :morning
+    @attrs = attributes_for :delivery_load, :afternoon
   end
 
   test 'index' do

@@ -31,7 +31,7 @@
       %tr
         %td= order.id
         %td=l order.delivery_date, format: :date_only if order.delivery_date.present?
-        %td= order.delivery_shift
+        %td=t order.delivery_shift if order.delivery_shift.present?
         %td= order.client_name
         %td= order.destination_raw_line_1
         %td= order.destination_city

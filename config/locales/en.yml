@@ -1,10 +1,14 @@
 en:
+  M: Morning
+  A: Afternoon
+  E: Evening
+
   date:
     formats:
-      default: '%_m/%e/%Y'
+      default: '%_m/%d/%Y'
   time:
     formats:
-      date_only: "%_m/%e/%Y"
+      date_only: "%_m/%d/%Y"
 
   web:
     sessions:
@@ -38,4 +42,5 @@ en:
       edit:
         title: Edit delivery load
       form:
+        tip: Please, fill form, click Create Button and after that add orders to delivery load.
         date: Date

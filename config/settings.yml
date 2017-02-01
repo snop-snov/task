@@ -5,3 +5,13 @@ company_address:
   state: NC
   zip: 27603
   country: US
+delivery_shifts:
+  -
+    - Morning
+    - M
+  -
+    - Afternoon
+    - A
+  -
+    - Evening
+    - E

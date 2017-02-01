@@ -9,5 +9,22 @@ class DeliveryLoad < ApplicationRecord
   validates :date, presence: true
   validates :delivery_shift, presence: true
 
-  # TODO: set driver before save
+  before_save :set_driver
+  after_save :assigne_orders
+
+  # FIXME: use enumerize for delivery_shift
+  def set_driver
+    case delivery_shift
+    when 'M', 'E'
+      self.driver = User.drivers.find_by(shift: 1)
+    when 'A'
+      self.driver = User.drivers.find_by(shift: 2)
+    end
+  end
+
+  def assigne_orders
+    orders.each do |order|
+      order.assigne! if order.may_assigne?
+    end
+  end
 end
