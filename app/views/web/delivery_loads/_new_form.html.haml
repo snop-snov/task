@@ -1,0 +1,17 @@
+= simple_form_for @delivery_load do |f|
+  .row
+    .container
+      .alert.alert-info{role: 'alert'}
+        = t('.tip')
+
+    = f.error_notification
+    .col-md-4
+      .form-group
+        = f.label t('.date'), required: true
+        .form-control
+          = f.date_select :date, order: [:month, :day, :year]
+      = f.input :delivery_shift, as: :select, collection: Settings.delivery_shifts, include_blank: false
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('helpers.links.cancel'), delivery_loads_path, class: 'btn'

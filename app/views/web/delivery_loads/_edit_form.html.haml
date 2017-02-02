@@ -1,0 +1,18 @@
+= simple_form_for @delivery_load do |f|
+  .row
+    .col-md-4
+      .form-group
+        = f.label t('.date'), required: true, disabled: true
+        .form-control{readonly: true}
+          = f.date_select :date, order: [:month, :day, :year], disabled: true
+      = f.input :delivery_shift, as: :select, collection: Settings.delivery_shifts, include_blank: false, disabled: true
+
+  %h4= f.label t('.orders_for_shift')
+  = render partial: 'orders', locals: { f: f, orders: @orders_for_shift }
+
+  %h4= f.label t('.other_orders')
+  = render partial: 'orders', locals: { f: f, orders: @orders_not_for_shift }
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('helpers.links.cancel'), delivery_loads_path, class: 'btn'

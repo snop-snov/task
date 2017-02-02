@@ -3,7 +3,7 @@ company_address:
   raw_line_1: 1505 S BLOUNT ST
   city: RALEIGH
   state: NC
-  zip: 27603
+  zip_code: 27603
   country: US
 delivery_shifts:
   -

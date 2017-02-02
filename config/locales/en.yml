@@ -10,6 +10,10 @@ en:
     formats:
       date_only: "%_m/%d/%Y"
 
+  reasons_for_check:
+    blank_delivery_date: Blank original delivery date
+    wrong_address: Destination address equals to the company address
+
   web:
     sessions:
       new:
@@ -34,6 +38,7 @@ en:
         title: Edit order
       form:
         delivery_date: Delivery date
+        tip: 'Reason for check: %{reason}'
     delivery_loads:
       index:
         title: Delivery loads
@@ -41,6 +46,10 @@ en:
         title: New delivery load
       edit:
         title: Edit delivery load
-      form:
-        tip: Please, fill form, click Create Button and after that add orders to delivery load.
+      new_form:
+        tip: Please fill form, click Create Button and after that add orders to delivery load.
         date: Date
+      edit_form:
+        date: Date
+        orders_for_shift: 'Choose orders for the same shift:'
+        other_orders: 'Choose other orders:'

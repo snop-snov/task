@@ -13,18 +13,18 @@ module ScheduleService
     private
 
     def process_order(data)
-      order = Order.find_or_initialize_by(
-        purchase_order_number: data[:purchase_order_number]
-      )
-      order.attributes = data.to_h.slice(
+      order_attrs = data.to_h.slice(
         :delivery_shift, :client_name, :destination_raw_line_1,
         :destination_city, :destination_zip, :phone_number,
         :purchase_order_number, :volume, :handling_unit_quantity
       )
-      order.delivery_date = get_date(data[:delivery_date]) if data[:delivery_date].present?
 
-      validate(order) if order.new_record?
-      order.save! if order.changed?
+      order = Order.new(order_attrs)
+      order.original_delivery_date = get_date(data[:delivery_date]) if data[:delivery_date].present?
+      order.set_delivery_date
+
+      validate(order)
+      order.save!
     end
 
     def get_date(str)
@@ -37,15 +37,26 @@ module ScheduleService
     end
 
     def validate_date(order)
-      if order.delivery_date.blank? || order.delivery_date < Date.today
+      if order.original_delivery_date.blank?
         order.invalidate
+        order.reason_for_check = I18n.t('reasons_for_check.blank_delivery_date')
       end
     end
 
     def validate_address(order)
-      Settings.company_address.each do |key, value|
-        order.invalidate if order.try(:"destination_#{key}") == value
+      if company_address?(order)
+        order.invalidate
+        order.reason_for_check = I18n.t('reasons_for_check.wrong_address')
       end
+    end
+
+    def company_address?(order)
+      origin_address = Settings.company_address
+
+      order.client_name == origin_address.name &&
+      order.destination_raw_line_1 == origin_address.raw_line_1 &&
+      order.destination_city == origin_address.city &&
+      order.destination_zip == origin_address.zip_code
     end
   end
 end

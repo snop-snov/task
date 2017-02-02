@@ -1,0 +1,28 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th= han :order, :order_id
+      %th= han :order, :delivery_shift
+      %th= han :order, :client_name
+      %th= han :order, :destination_raw_line_1
+      %th= han :order, :destination_city
+      %th= han :order, :destination_zip
+      %th= han :order, :phone_number
+      %th= han :order, :purchase_order_number
+      %th= han :order, :volume
+      %th= han :order, :handling_unit_quantity
+  %tbody
+    = f.collection_check_boxes :order_ids, orders, :id, :client_name do |b|
+      %tr
+        %td= b.label { b.check_box }
+        %td= b.object.id
+        %td=t b.object.delivery_shift if b.object.delivery_shift.present?
+        %td= b.object.client_name
+        %td= b.object.destination_raw_line_1
+        %td= b.object.destination_city
+        %td= b.object.destination_zip
+        %td= b.object.phone_number
+        %td= b.object.purchase_order_number
+        %td= b.object.volume
+        %td= b.object.handling_unit_quantity

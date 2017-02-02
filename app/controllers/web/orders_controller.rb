@@ -30,7 +30,7 @@ class Web::OrdersController < Web::ApplicationController
   def order_params
     params.require(:order).permit(
       :delivery_date, :delivery_shift, :client_name, :destination_raw_line_1,
-      :destination_city, :destination_zip, :phone_number,
+      :destination_city, :destination_zip, :phone_number, :reason_for_check,
       :purchase_order_number, :volume, :handling_unit_quantity, :state
     )
   end

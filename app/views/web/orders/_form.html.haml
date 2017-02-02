@@ -1,5 +1,10 @@
 = simple_form_for @order do |f|
   .row
+    - if @order.need_checking?
+      .container
+        .alert.alert-info{role: 'alert'}
+          = t('.tip', reason: @order.reason_for_check)
+
     = f.error_notification
     .col-md-4
       = f.input :client_name
@@ -18,6 +23,7 @@
           = f.date_select :delivery_date, order: [:month, :day, :year]
       = f.input :delivery_shift, as: :select, collection: Settings.delivery_shifts
       = f.input :state, as: :select, collection: @order_states, selected: @order.state
+      = f.input :reason_for_check
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'

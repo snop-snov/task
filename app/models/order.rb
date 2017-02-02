@@ -4,17 +4,15 @@ class Order < ApplicationRecord
 
   belongs_to :delivery_load
 
-  scope :for_delivery_load, ->(delivery_load) {
-    where(delivery_date: delivery_load.date, state: :unassigned).
-    or(where(delivery_load_id: delivery_load.id))
-  }
+  scope :for_date, ->(date) { where(delivery_date: date) }
+  scope :for_shift, ->(shift) { where(delivery_shift: shift) }
+  scope :not_for_shift, ->(shift) { where.not(delivery_shift: shift).or(where(delivery_shift: nil)) }
 
   aasm column: :state do
     state :need_checking
     state :unassigned, initial: true
     state :assigned
     state :performed
-    state :overdue
 
     event :invalidate do
       transitions to: :need_checking
@@ -31,9 +29,16 @@ class Order < ApplicationRecord
     event :perform do
       transitions from: :assigned, to: :performed
     end
+  end
 
-    event :delay do
-      transitions from: :unassigned, to: :overdue
-    end
+  def set_delivery_date
+    self.delivery_date = original_delivery_date
+    self.delivery_date = Date.today if delivery_date.blank? || overdue_date?
+  end
+
+  private
+
+  def overdue_date?
+    delivery_date.present? && delivery_date < Date.today
   end
 end

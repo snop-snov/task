@@ -9,7 +9,7 @@ class DeliveryLoad < ApplicationRecord
   validates :date, presence: true
   validates :delivery_shift, presence: true
 
-  before_save :set_driver
+  before_save :set_driver, if: -> { date == Date.today }
   after_save :assigne_orders
 
   # FIXME: use enumerize for delivery_shift
@@ -23,8 +23,6 @@ class DeliveryLoad < ApplicationRecord
   end
 
   def assigne_orders
-    orders.each do |order|
-      order.assigne! if order.may_assigne?
-    end
+    orders.each { |order| order.assigne! if order.may_assigne? }
   end
 end

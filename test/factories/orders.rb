@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :order do
+    original_delivery_date { generate :date }
     delivery_date { generate :date }
     client_name { generate :name }
     destination_raw_line_1 { generate :address }

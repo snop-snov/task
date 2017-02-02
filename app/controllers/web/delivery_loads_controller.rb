@@ -13,6 +13,10 @@ class Web::DeliveryLoadsController < Web::ApplicationController
 
   def edit
     @delivery_load = DeliveryLoad.find params[:id]
+
+    orders = Order.unassigned.for_date(@delivery_load.date)
+    @orders_for_shift = orders.for_shift(@delivery_load.delivery_shift)
+    @orders_not_for_shift = orders.not_for_shift(@delivery_load.delivery_shift)
   end
 
   def create
@@ -31,7 +35,7 @@ class Web::DeliveryLoadsController < Web::ApplicationController
 
     if @delivery_load.update(delivery_load_params)
       f(:success)
-      redirect_to edit_delivery_load_path(@delivery_load)
+      redirect_to delivery_loads_path
     else
       render action: 'edit'
     end
