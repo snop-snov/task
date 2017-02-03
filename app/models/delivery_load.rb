@@ -25,4 +25,28 @@ class DeliveryLoad < ApplicationRecord
   def assigne_orders
     orders.each { |order| order.assigne! if order.may_assigne? }
   end
+
+  def to_csv
+    attributes = %w(date shift address client_name phone_number purchase_order_number)
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      orders.each do |order|
+        values = []
+        values << I18n.l(date, format: :date_only)
+        values << delivery_shift
+        values << order.address
+        values << order.client_name
+        values << order.phone_number
+        values << order.purchase_order_number
+
+        csv << values
+      end
+    end
+  end
+
+  def file_name
+    ['Routing_list', I18n.l(date, format: :underscore), delivery_shift, 'csv'].join('.')
+  end
 end

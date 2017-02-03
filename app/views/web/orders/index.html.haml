@@ -44,7 +44,7 @@
         %td= order.handling_unit_quantity
         %td= order.state
         %td
-          = link_to edit_order_path(order.id) do
+          = link_to edit_order_path(order) do
             %i.glyphicon.glyphicon-pencil
 
 = paginate @orders, theme: 'twitter-bootstrap-3'

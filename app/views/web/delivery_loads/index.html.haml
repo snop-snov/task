@@ -22,7 +22,7 @@
         %td= delivery_load.driver.name if delivery_load.driver.present?
         %td= delivery_load.orders.count
         %td
-          = link_to edit_delivery_load_path(delivery_load.id) do
+          = link_to edit_delivery_load_path(delivery_load) do
             %i.glyphicon.glyphicon-pencil
 
 = paginate @delivery_loads

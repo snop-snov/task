@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :delivery_load do
     date
 
-    after :build do |l|
-      l.driver = create(:user, :driver)
+    trait :with_driver do
+      driver { create :user, :driver }
     end
 
     trait :morning do

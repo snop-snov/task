@@ -11,8 +11,6 @@ class ScheduleType < ActiveType::Object
   private
 
   def check_content_type
-    unless file.content_type == CONTENT_TYPE
-      errors.add(:file, :wrong_content_type)
-    end
+    errors.add(:file, :wrong_content_type) unless file.content_type == CONTENT_TYPE
   end
 end

@@ -9,6 +9,7 @@ en:
   time:
     formats:
       date_only: "%_m/%d/%Y"
+      underscore: '%m_%d_%Y'
 
   reasons_for_check:
     blank_delivery_date: Blank original delivery date

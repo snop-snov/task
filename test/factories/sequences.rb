@@ -19,8 +19,8 @@ FactoryGirl.define do
     n.to_f + 0.5
   end
 
-  sequence :date do
-    DateTime.now.to_date
+  sequence :date do |n|
+    Date.today + n.days
   end
 
   sequence :file do

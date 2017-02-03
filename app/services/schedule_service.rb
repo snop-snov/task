@@ -1,5 +1,3 @@
-require 'csv'
-
 module ScheduleService
   DELIVERY_DATE_FORMAT = '%m/%d/%Y'.freeze
 

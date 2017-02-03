@@ -36,6 +36,10 @@ class Order < ApplicationRecord
     self.delivery_date = Date.today if delivery_date.blank? || overdue_date?
   end
 
+  def address
+    [destination_raw_line_1, destination_city, destination_zip].join(', ')
+  end
+
   private
 
   def overdue_date?

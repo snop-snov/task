@@ -1,5 +1,5 @@
 class Web::DeliveryLoadsController < Web::ApplicationController
-  authorize_actions_for DeliveryLoad
+  authorize_actions_for DeliveryLoad, except: :download
 
   def index
     @q = DeliveryLoad.ransack(params[:q])
@@ -38,6 +38,15 @@ class Web::DeliveryLoadsController < Web::ApplicationController
       redirect_to delivery_loads_path
     else
       render action: 'edit'
+    end
+  end
+
+  def download
+    delivery_load = DeliveryLoad.find params[:id]
+    authorize_action_for delivery_load
+
+    respond_to do |format|
+      format.csv { send_data delivery_load.to_csv, filename: delivery_load.file_name }
     end
   end
 
