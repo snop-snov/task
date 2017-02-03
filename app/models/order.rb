@@ -4,7 +4,11 @@ class Order < ApplicationRecord
 
   belongs_to :delivery_load
 
-  scope :for_date, ->(date) { where(delivery_date: date) }
+  scope :for_delivery_load, ->(delivery_load) {
+    where(delivery_date: delivery_load.date, state: :unassigned).
+    or(where(delivery_load: delivery_load))
+  }
+
   scope :for_shift, ->(shift) { where(delivery_shift: shift) }
   scope :not_for_shift, ->(shift) { where.not(delivery_shift: shift).or(where(delivery_shift: nil)) }
   scope :overdue, -> { where('delivery_date < ?', Date.today) }

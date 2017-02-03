@@ -14,7 +14,7 @@ class Web::DeliveryLoadsController < Web::ApplicationController
   def edit
     @delivery_load = DeliveryLoad.find params[:id]
 
-    orders = Order.unassigned.for_date(@delivery_load.date)
+    orders = Order.for_delivery_load(@delivery_load)
     @orders_for_shift = orders.for_shift(@delivery_load.delivery_shift)
     @orders_not_for_shift = orders.not_for_shift(@delivery_load.delivery_shift)
   end
