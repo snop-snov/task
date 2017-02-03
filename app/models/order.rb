@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   scope :for_date, ->(date) { where(delivery_date: date) }
   scope :for_shift, ->(shift) { where(delivery_shift: shift) }
   scope :not_for_shift, ->(shift) { where.not(delivery_shift: shift).or(where(delivery_shift: nil)) }
+  scope :overdue, -> { where('delivery_date < ?', Date.today) }
 
   aasm column: :state do
     state :need_checking
