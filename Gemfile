@@ -22,6 +22,7 @@ gem 'ransack'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'activerecord-import'
+gem 'clockwork'
 
 group :development, :test do
   gem 'byebug', platform: :mri
