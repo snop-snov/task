@@ -11,6 +11,7 @@ class Web::SessionsController < Web::ApplicationController
     if @session.valid?
       user = @session.user
       sign_in(user)
+
       f(:success)
       redirect_to root_path
     else
@@ -21,6 +22,7 @@ class Web::SessionsController < Web::ApplicationController
 
   def destroy
     sign_out
+
     f(:success)
     redirect_to new_session_path
   end

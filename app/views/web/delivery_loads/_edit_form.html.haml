@@ -7,6 +7,10 @@
           = f.date_select :date, order: [:month, :day, :year], disabled: true
       = f.input :delivery_shift, as: :select, collection: Settings.delivery_shifts, include_blank: false, disabled: true
 
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('helpers.links.cancel'), delivery_loads_path, class: 'btn'
+
   %h4= f.label t('.orders_for_shift')
   = render partial: 'orders', locals: { f: f, orders: @orders_for_shift }
 
