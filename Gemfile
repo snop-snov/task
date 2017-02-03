@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'ransack'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'activerecord-import'
 
 group :development, :test do
   gem 'byebug', platform: :mri

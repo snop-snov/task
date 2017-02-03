@@ -5,9 +5,13 @@ module ScheduleService
 
   class << self
     def import(file)
+      @orders = []
+
       CSV.parse(file.read, headers: true, header_converters: :symbol) do |row|
         process_order(row)
       end
+
+      Order.import(@orders)
     end
 
     private
@@ -24,7 +28,7 @@ module ScheduleService
       order.set_delivery_date
 
       validate(order)
-      order.save!
+      @orders << order
     end
 
     def get_date(str)
