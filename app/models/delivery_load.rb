@@ -10,7 +10,7 @@ class DeliveryLoad < ApplicationRecord
   validates :delivery_shift, presence: true
 
   before_save :set_driver, if: -> { date == Date.today }
-  after_save :assigne_orders
+  after_save :assign_orders
 
   # FIXME: use enumerize for delivery_shift
   def set_driver
@@ -22,8 +22,8 @@ class DeliveryLoad < ApplicationRecord
     end
   end
 
-  def assigne_orders
-    orders.each { |order| order.assigne! if order.may_assigne? }
+  def assign_orders
+    orders.each { |order| order.assign! if order.may_assign? }
   end
 
   def to_csv

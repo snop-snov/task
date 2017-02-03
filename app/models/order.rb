@@ -22,7 +22,7 @@ class Order < ApplicationRecord
       transitions from: :need_checking, to: :unassigned
     end
 
-    event :assigne do
+    event :assign do
       transitions from: :unassigned, to: :assigned
     end
 
