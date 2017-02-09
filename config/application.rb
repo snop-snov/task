@@ -10,5 +10,7 @@ module Task
     config.generators do |g|
       g.test_framework :test_unit, fixture: false, fixture_replacement: :factory_girl
     end
+
+    config.timezone = 'Samara'
   end
 end
