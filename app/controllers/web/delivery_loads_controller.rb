@@ -34,6 +34,9 @@ class Web::DeliveryLoadsController < Web::ApplicationController
     @delivery_load = DeliveryLoad.find params[:id]
 
     if @delivery_load.update(delivery_load_params)
+      order_ids = params[:delivery_load][:order_ids] || []
+      OrdersService.assign_orders(@delivery_load, order_ids)
+
       f(:success)
       redirect_to delivery_loads_path
     else
@@ -53,6 +56,6 @@ class Web::DeliveryLoadsController < Web::ApplicationController
   private
 
   def delivery_load_params
-    params.require(:delivery_load).permit(:date, :delivery_shift, order_ids: [])
+    params.require(:delivery_load).permit(:date, :delivery_shift)
   end
 end

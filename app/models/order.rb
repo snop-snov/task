@@ -5,8 +5,8 @@ class Order < ApplicationRecord
   belongs_to :delivery_load
 
   scope :for_delivery_load, ->(delivery_load) {
-    where(delivery_date: delivery_load.date, state: :unassigned).
-    or(where(delivery_load: delivery_load))
+    where(delivery_date: delivery_load.date, state: :unassigned)
+      .or(where(delivery_load: delivery_load))
   }
 
   scope :for_shift, ->(shift) { where(delivery_shift: shift) }
@@ -25,6 +25,10 @@ class Order < ApplicationRecord
 
     event :check do
       transitions from: :need_checking, to: :unassigned
+    end
+
+    event :unassign do
+      transitions from: :assigned, to: :unassigned
     end
 
     event :assign do

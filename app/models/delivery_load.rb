@@ -10,7 +10,6 @@ class DeliveryLoad < ApplicationRecord
   validates :delivery_shift, presence: true
 
   before_save :set_driver, if: -> { date == Date.today }
-  after_save :assign_orders
 
   # FIXME: use enumerize for delivery_shift
   def set_driver
@@ -20,10 +19,6 @@ class DeliveryLoad < ApplicationRecord
     when 'A'
       self.driver = User.drivers.find_by(shift: 2)
     end
-  end
-
-  def assign_orders
-    orders.each { |order| order.assign! if order.may_assign? }
   end
 
   def to_csv
