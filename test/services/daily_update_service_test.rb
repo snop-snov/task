@@ -8,7 +8,7 @@ class DailyUpdateServiceTest < ActionController::TestCase
     @first_shift_driver = create :user, :driver, shift: 1
     @second_shift_driver = create :user, :driver, shift: 2
 
-    @delivery_load = create :delivery_load, :morning, date: Date.today
+    @delivery_load = create :delivery_load, :morning, date: Date.current
   end
 
   test 'perform' do
@@ -18,7 +18,7 @@ class DailyUpdateServiceTest < ActionController::TestCase
     @assigned_order.reload
 
     assert { @overdue_order.unassigned? }
-    assert { @overdue_order.delivery_date == Date.today }
+    assert { @overdue_order.delivery_date == Date.current }
     assert { @assigned_order.performed? }
     assert { @assigned_order.delivery_date == Date.yesterday }
 

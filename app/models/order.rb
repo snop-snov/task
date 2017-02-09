@@ -11,7 +11,7 @@ class Order < ApplicationRecord
 
   scope :for_shift, ->(shift) { where(delivery_shift: shift) }
   scope :not_for_shift, ->(shift) { where.not(delivery_shift: shift).or(where(delivery_shift: nil)) }
-  scope :overdue, -> { where('delivery_date < ?', Date.today) }
+  scope :overdue, -> { where('delivery_date < ?', Date.current) }
 
   aasm column: :state do
     state :need_checking
@@ -42,7 +42,7 @@ class Order < ApplicationRecord
 
   def set_delivery_date
     self.delivery_date = original_delivery_date
-    self.delivery_date = Date.today if delivery_date.blank? || overdue_date?
+    self.delivery_date = Date.current if delivery_date.blank? || overdue_date?
   end
 
   def address
@@ -52,6 +52,6 @@ class Order < ApplicationRecord
   private
 
   def overdue_date?
-    delivery_date.present? && delivery_date < Date.today
+    delivery_date.present? && delivery_date < Date.current
   end
 end

@@ -12,9 +12,9 @@ class ScheduleServiceTest < ActionController::TestCase
     number_for_correct_order = '500396805'
 
     ScheduleService.expects(:get_date).with('9/17/2014').returns(Date.yesterday)
-    ScheduleService.expects(:get_date).with('9/18/2014').returns(Date.today)
+    ScheduleService.expects(:get_date).with('9/18/2014').returns(Date.current)
     ScheduleService.expects(:get_date).with('9/19/2014').returns(Date.tomorrow)
-    ScheduleService.expects(:get_date).with('9/20/2014').returns(Date.today + 2.days)
+    ScheduleService.expects(:get_date).with('9/20/2014').returns(Date.current + 2.days)
 
     ScheduleService.import(@file)
 
@@ -22,9 +22,9 @@ class ScheduleServiceTest < ActionController::TestCase
 
     overdue_order = Order.find_by(purchase_order_number: number_for_overdue_order, original_delivery_date: Date.yesterday)
     order_without_date = Order.find_by(purchase_order_number: number_for_order_without_date, original_delivery_date: nil)
-    incorrect_address_order = Order.find_by(purchase_order_number: number_for_incorrect_address_order, original_delivery_date: Date.today)
+    incorrect_address_order = Order.find_by(purchase_order_number: number_for_incorrect_address_order, original_delivery_date: Date.current)
     correct_order = Order.find_by(purchase_order_number: number_for_correct_order, original_delivery_date: Date.tomorrow)
-    correct_order_double = Order.find_by(purchase_order_number: number_for_correct_order, original_delivery_date: Date.today + 2.days)
+    correct_order_double = Order.find_by(purchase_order_number: number_for_correct_order, original_delivery_date: Date.current + 2.days)
 
     assert { overdue_order.unassigned? }
     assert { order_without_date.need_checking? }
@@ -32,10 +32,10 @@ class ScheduleServiceTest < ActionController::TestCase
     assert { correct_order.unassigned? }
     assert { correct_order_double.unassigned? }
 
-    assert { overdue_order.delivery_date == Date.today }
-    assert { order_without_date.delivery_date == Date.today }
-    assert { incorrect_address_order.delivery_date == Date.today }
+    assert { overdue_order.delivery_date == Date.current }
+    assert { order_without_date.delivery_date == Date.current }
+    assert { incorrect_address_order.delivery_date == Date.current }
     assert { correct_order.delivery_date == Date.tomorrow }
-    assert { correct_order_double.delivery_date == Date.today + 2.days }
+    assert { correct_order_double.delivery_date == Date.current + 2.days }
   end
 end

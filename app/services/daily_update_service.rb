@@ -11,7 +11,7 @@ module DailyUpdateService
 
     def update_unassigned_orders
       orders = Order.unassigned.overdue
-      orders.update_all(delivery_date: Date.today)
+      orders.update_all(delivery_date: Date.current)
     end
 
     def update_assigned_orders

@@ -4,12 +4,12 @@ class DeliveryLoad < ApplicationRecord
   belongs_to :driver, -> { drivers }, class_name: User
   has_many :orders
 
-  scope :for_today, -> { where date: Date.today }
+  scope :for_today, -> { where date: Date.current }
 
   validates :date, presence: true
   validates :delivery_shift, presence: true
 
-  before_save :set_driver, if: -> { date == Date.today }
+  before_save :set_driver, if: -> { date == Date.current }
 
   # FIXME: use enumerize for delivery_shift
   def set_driver

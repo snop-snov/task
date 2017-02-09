@@ -20,7 +20,7 @@ FactoryGirl.define do
   end
 
   sequence :date do |n|
-    Date.today + n.days
+    Date.current + n.days
   end
 
   sequence :file do
